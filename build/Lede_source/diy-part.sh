@@ -9,7 +9,7 @@
 
 
 
-
+sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate   # 修改openwrt登陆地址,把下面的192.168.2.2修改成你想要的就可以了
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile            # 选择argon为默认主题
 
