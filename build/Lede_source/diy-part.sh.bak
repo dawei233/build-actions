@@ -9,18 +9,21 @@
 
 
 
-cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.2.2'                                    # IPv4 地址(openwrt后台地址)
-uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
-uci set network.lan.gateway='192.168.2.1'                                   # IPv4 网关
-uci set network.lan.broadcast='192.168.2.255'                               # IPv4 广播
-uci set network.lan.dns='223.5.5.5 114.114.114.114'                         # DNS(多个DNS要用空格分开)
-uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
-uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
+#cat >$NETIP <<-EOF
+#uci set network.lan.ipaddr='10.0.0.1'                                    # IPv4 地址(openwrt后台地址)
+#uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
+#uci set network.lan.gateway='10.0.0.1'                                   # IPv4 网关
+#uci set network.lan.broadcast='10.0.0.255'                               # IPv4 广播
+#uci set network.lan.dns='223.5.5.5 129.29.29.29'                         # DNS(多个DNS要用空格分开)
+#uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
+#uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
 #uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
 #uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释
-uci set system.@system[0].hostname='OpenWrt-123'                            # 修改主机名称为OpenWrt-123
-EOF
+#uci set system.@system[0].hostname='OpenWrt-123'                            # 修改主机名称为OpenWrt-123
+#EOF
+
+sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate   # 修改openwrt登陆地址,把下面的192.168.2.2修改成你想要的就可以了
+
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile            # 选择argon为默认主题
 
@@ -52,3 +55,12 @@ sed -i 's/"Web 管理"/"Web"/g' `grep "Web 管理" -rl ./`
 sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
 sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
+
+# 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间
+cat >${GITHUB_WORKSPACE}/Clear <<-EOF
+rm -rf config.buildinfo
+rm -rf feeds.buildinfo
+rm -rf sha256sums
+rm -rf version.buildinfo
+EOF
+
