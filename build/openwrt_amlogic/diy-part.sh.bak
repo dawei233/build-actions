@@ -17,14 +17,11 @@ uci set network.lan.broadcast='192.168.2.255'                               # IP
 uci set network.lan.dns='114.114.114.114 223.5.5.5'                         # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
-#uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
-#uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释
-uci set system.@system[0].hostname='Phicomm-N1'                             # 修改主机名称为Phicomm-N1
-#sed -i 's/\/bin\/login/\/bin\/login -f root/' /etc/config/ttyd             # 设置ttyd免帐号登录，如若开启，进入OPENWRT后可能要重启一次才生效
+#uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能（去掉uci前面的#生效）
+#uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释（去掉uci前面的#生效）
+uci set system.@system[0].hostname='OpenWrt-123'                            # 修改主机名称为OpenWrt-123
+#sed -i 's/\/bin\/login/\/bin\/login -f root/' /etc/config/ttyd              # 设置ttyd免帐号登录，如若开启，进入OPENWRT后可能要重启一次才生效（去掉uci前面的#生效）
 EOF
-
-
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile           # 选择argon为默认主题
 
 sed -i "s/OpenWrt /${Author} Compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ          # 增加个性名字${Author}默认为你的github账号
 
@@ -35,7 +32,7 @@ sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                          
 cat >$GITHUB_WORKSPACE/amlogic_openwrt <<-EOF
 amlogic_model=s905x3_s905x2_s905x_s905d_s922x_s912
 amlogic_kernel=5.10.70_5.4.150
-rootfs_size=1024
+rootfs_size=960
 EOF
 
 
