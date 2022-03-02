@@ -1,3 +1,6 @@
+
+- [`说明`](https://github.com/danshui-git/shuoming#readme)
+
 - # 鸣谢
 > [`coolsnowwolf`](https://github.com/coolsnowwolf/lede.git)
 > [`Lienol`](https://github.com/Lienol/openwrt.git)
