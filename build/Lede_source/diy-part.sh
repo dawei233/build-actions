@@ -7,7 +7,7 @@
 
 
 
-#cat >$NETIP <<-EOF
+cat >$NETIP <<-EOF
 #uci set network.lan.ipaddr='192.168.2.2'                      # IPv4 地址(openwrt后台地址)
 #uci set network.lan.netmask='255.255.255.0'                   # IPv4 子网掩码
 #uci set network.lan.gateway='192.168.2.1'                    # 旁路由设置 IPv4 网关（去掉uci前面的#生效）
@@ -18,17 +18,17 @@ uci set dhcp.@dnsmasq[0].filter_aaaa='0'                      # 禁止解析 IPv
 
 #uci set dhcp.lan.ignore='1'                                  # 旁路由关闭DHCP功能（去掉uci前面的#生效）
 #uci delete network.lan.type                                  # 旁路由去掉桥接模式（去掉uci前面的#生效）
-#uci set system.@system[0].hostname='OpenWrt-123'              # 修改主机名称为OpenWrt-123
+uci set system.@system[0].hostname='OpenWrt-123'              # 修改主机名称为OpenWrt-123
 #uci set ttyd.@ttyd[0].command='/bin/login -f root'           # 设置ttyd免帐号登录（去掉uci前面的#生效）
 
 # 如果有用IPV6的话,可以使用以下命令创建IPV6客户端(LAN口)（去掉全部代码uci前面#号生效）
-#uci set network.ipv6=interface
-#uci set network.ipv6.proto='dhcpv6'
-#uci set network.ipv6.ifname='@lan'
-#uci set network.ipv6.reqaddress='try'
-#uci set network.ipv6.reqprefix='auto'
-#uci set firewall.@zone[0].network='lan ipv6'
-#EOF
+uci set network.ipv6=interface
+uci set network.ipv6.proto='dhcpv6'
+uci set network.ipv6.ifname='@lan'
+uci set network.ipv6.reqaddress='try'
+uci set network.ipv6.reqprefix='auto'
+uci set firewall.@zone[0].network='lan ipv6'
+EOF
 
 
 # 把bootstrap替换成argon为源码必选主题（可自行修改您要的,主题名称必须对,比如下面代码的[argon],源码内必须有该主题,要不然编译失败）
