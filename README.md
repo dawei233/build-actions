@@ -21,9 +21,15 @@
 ---
 
 <details>
-<summary>🆙更新说明（2023年6月16号）</summary>
+<summary>🆙更新说明（2023年9月2号）</summary>
 
 <br>
+
+  2023年9月2号
+
+ 增加<释放Ubuntu磁盘空间>解决最近因为服务器空间不足而编译失败的问题
+ 
+ ---
  
   2023年6月16号
  
@@ -134,19 +140,6 @@ CONFIG_TARGET_armsr_armv8_DEVICE_generic=y
 《[本地一键提取.config然后在云编译脚本使用](https://github.com/281677160/bendi)》
 
 <br />
-</details>
-
----
-
-<details>
-<summary>🏠Telegram群</summary>
-<br>
-<br />
- 
-《[Telegram聊天吹水群](https://t.me/heiheiheio)》
-
-《[Telegram中文设置方法](https://github.com/danshui-git/shuoming/blob/master/tele.md)》
-
 </details>
 
 ---
