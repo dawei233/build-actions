@@ -14,13 +14,12 @@ on:
   workflow_dispatch:
     inputs:
       REPO_BRANCH:
-        description: '（大雕源码）请选择源码分支'
+        description: '大雕源码'
         required: true
         default: 'master'
         type: choice
         options:
           - 'master'
-          - 'gl-ax1800'
       CONFIG_FILE:
         description: '请选择配置文件'
         required: true
@@ -131,7 +130,7 @@ jobs:
         fi
     
     - name: 准备结束
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: 检测文件和对比上游版本
       run: |
